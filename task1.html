@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduLearn - E-Learning Website</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7fc;
+    color: #24324a;
+}
+
+/* Navigation Bar */
+header {
+    background: #142b4d;
+    color: white;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    color: #60c5ff;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #60c5ff;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(120deg, #142b4d, #1768c5);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    margin-bottom: 25px;
+}
+
+.btn {
+    background: #087cf5;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #075dc0;
+}
+
+/* Main Container */
+.container {
+    width: 92%;
+    max-width: 1250px;
+    margin: 35px auto;
+}
+
+.section-title {
+    color: #173c72;
+    font-size: 28px;
+    margin-bottom: 22px;
+}
+
+/* Categories */
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.category {
+    background: white;
+    border: 1px solid #dbe6f5;
+    padding: 10px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.category:hover,
+.category.active {
+    background: #087cf5;
+    color: white;
+}
+
+#search {
+    width: 100%;
+    max-width: 420px;
+    padding: 12px;
+    border: 1px solid #ccd8e8;
+    border-radius: 7px;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+/* Course Cards */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.course-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e1eaf5;
+    box-shadow: 0 4px 15px rgba(30, 60, 100, 0.09);
+    transition: transform 0.2s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.thumbnail {
+    height: 180px;
+    position: relative;
+    background: #173c72;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.duration {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #142b4d;
+    color: white;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.course-content {
+    padding: 18px;
+}
+
+.course-content h3 {
+    color: #183d70;
+    margin-bottom: 10px;
+}
+
+.instructor {
+    color: #60718a;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.rating {
+    color: #e8a000;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 14px;
+    color: #5a6b82;
+    margin-bottom: 15px;
+}
+
+/* Learning Objectives */
+.objectives {
+    background: #f3f7ff;
+    padding: 12px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.objectives h4 {
+    margin-bottom: 7px;
+    color: #214a80;
+}
+
+.objectives ul {
+    padding-left: 18px;
+}
+
+.objectives li {
+    margin-bottom: 4px;
+}
+
+/* Progress Indicators */
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.progress-bar {
+    height: 9px;
+    background: #e3eaf4;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #12b886;
+    border-radius: 10px;
+}
+
+.enroll-btn {
+    width: 100%;
+}
+
+/* Instructor Profiles */
+.instructor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.instructor-card {
+    background: white;
+    padding: 22px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(30, 60, 100, 0.08);
+}
+
+.avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    background: #d9eaff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.instructor-card p {
+    color: #687991;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.empty-message {
+    display: none;
+    margin-top: 20px;
+    color: #687991;
+}
+
+/* Footer */
+footer {
+    background: #142b4d;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 45px;
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+    .course-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .instructor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .course-grid,
+    .instructor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header>
+    <h1>🎓 EduLearn</h1>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#instructors">Instructors</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <h2>Learn New Skills, Build a Better Future</h2>
+    <p>Explore expert-led courses and learn at your own pace.</p>
+    <a href="#courses" class="btn">Explore Courses →</a>
+</section>
+
+<main class="container">
+
+    <!-- Course Categories -->
+    <section id="courses">
+        <h2 class="section-title">Explore Course Categories</h2>
+
+        <div class="categories">
+            <button class="category active" data-category="All">All Courses</button>
+            <button class="category" data-category="Programming">Programming</button>
+            <button class="category" data-category="Web Development">Web Development</button>
+            <button class="category" data-category="Data Science">Data Science</button>
+            <button class="category" data-category="Design">Design</button>
+            <button class="category" data-category="Marketing">Marketing</button>
+        </div>
+
+        <input
+            type="search"
+            id="search"
+            placeholder="🔍 Search courses..."
+            aria-label="Search courses"
+        >
+
+        <div class="course-grid" id="courseGrid">
+
+            <!-- Python Course -->
+            <article class="course-card" data-category="Programming">
+                <div class="thumbnail">
+                    <img src="https://placehold.co/600x350/142b4d/ffffff?text=Python+Programming"
+                         alt="Python programming course">
+                    <span class="duration">3h 45m</span>
+                </div>
+
+                <div class="course-content">
+                    <h3>Python Programming for Beginners</h3>
+                    <p class="instructor">👨‍🏫 Rahul Sharma</p>
+                    <p class="rating">⭐ 4.8 / 5</p>
+                    <p class="description">
+                        Learn Python basics, loops, functions, and practical programming.
+                    </p>
+
+                    <div class="objectives">
+                        <h4>Learning Objectives</h4>
+                        <ul>
+                            <li>Understand Python fundamentals.</li>
+                            <li>Write programs using loops and functions.</li>
+                            <li>Solve beginner coding problems.</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>Course Progress</span>
+                        <strong>65%</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:65%"></div>
+                    </div>
+
+                    <button class="btn enroll-btn"
+                            data-course="Python Programming for Beginners">
+                        Enroll Now
+                    </button>
+                </div>
+            </article>
+
+            <!-- Web Development Course -->
+            <article class="course-card" data-category="Web Development">
+                <div class="thumbnail">
+                    <img src="https://placehold.co/600x350/075985/ffffff?text=HTML+CSS"
+                         alt="Web development course">
+                    <span class="duration">4h 20m</span>
+                </div>
+
+                <div class="course-content">
+                    <h3>Web Development Essentials</h3>
+                    <p class="instructor">👩‍🏫 Priya Nair</p>
+                    <p class="rating">⭐ 4.7 / 5</p>
+                    <p class="description">
+                        Create responsive websites using HTML, CSS.
+                    </p>
+
+                    <div class="objectives">
+                        <h4>Learning Objectives</h4>
+                        <ul>
+                            <li>Create pages using HTML.</li>
+                            <li>Design layouts with CSS.</li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>Course Progress</span>
+                        <strong>40%</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:40%"></div>
+                    </div>
+
+                    <button class="btn enroll-btn"
+                            data-course="Web Development Essentials">
+                        Enroll Now
+                    </button>
+                </div>
+            </article>
+
+            <!-- Data Science Course -->
+            <article class="course-card" data-category="Data Science">
+                <div class="thumbnail">
+                    <img src="https://placehold.co/600x350/166534/ffffff?text=Data+Science"
+                         alt="Data science course">
+                    <span class="duration">5h 10m</span>
+                </div>
+
+                <div class="course-content">
+                    <h3>Data Science with Python</h3>
+                    <p class="instructor">👨‍🏫 Amit Verma</p>
+                    <p class="rating">⭐ 4.9 / 5</p>
+                    <p class="description">
+                        Explore data analysis, visualization, and machine learning basics.
+                    </p>
+
+                    <div class="objectives">
+                        <h4>Learning Objectives</h4>
+                        <ul>
+                            <li>Understand data analysis.</li>
+                            <li>Create data visualizations.</li>
+                            <li>Explore machine learning concepts.</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>Course Progress</span>
+                        <strong>20%</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:20%"></div>
+                    </div>
+
+                    <button class="btn enroll-btn"
+                            data-course="Data Science with Python">
+                        Enroll Now
+                    </button>
+                </div>
+            </article>
+
+            <!-- UI/UX Design Course -->
+            <article class="course-card" data-category="Design">
+                <div class="thumbnail">
+                    <img src="https://placehold.co/600x350/7c3aed/ffffff?text=UI+UX+Design"
+                         alt="UI UX design course">
+                    <span class="duration">2h 55m</span>
+                </div>
+
+                <div class="course-content">
+                    <h3>UI/UX Design Fundamentals</h3>
+                    <p class="instructor">👩‍🏫 Sneha Reddy</p>
+                    <p class="rating">⭐ 4.6 / 5</p>
+                    <p class="description">
+                        Learn design principles and create user-friendly interfaces.
+                    </p>
+
+                    <div class="objectives">
+                        <h4>Learning Objectives</h4>
+                        <ul>
+                            <li>Understand UI and UX.</li>
+                            <li>Learn layout and color principles.</li>
+                            <li>Create interface prototypes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>Course Progress</span>
+                        <strong>10%</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:10%"></div>
+                    </div>
+
+                    <button class="btn enroll-btn"
+                            data-course="UI/UX Design Fundamentals">
+                        Enroll Now
+                    </button>
+                </div>
+            </article>
+
+            <!-- Digital Marketing Course -->
+            <article class="course-card" data-category="Marketing">
+                <div class="thumbnail">
+                    <img src="https://placehold.co/600x350/9a3412/ffffff?text=Digital+Marketing"
+                         alt="Digital marketing course">
+                    <span class="duration">3h 30m</span>
+                </div>
+
+                <div class="course-content">
+                    <h3>Digital Marketing Basics</h3>
+                    <p class="instructor">👨‍🏫 Karan Mehta</p>
+                    <p class="rating">⭐ 4.5 / 5</p>
+                    <p class="description">
+                        Learn online marketing, social media, and SEO fundamentals.
+                    </p>
+
+                    <div class="objectives">
+                        <h4>Learning Objectives</h4>
+                        <ul>
+                            <li>Understand digital marketing.</li>
+                            <li>Explore social media promotion.</li>
+                            <li>Learn SEO fundamentals.</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>Course Progress</span>
+                        <strong>50%</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:50%"></div>
+                    </div>
+
+                    <button class="btn enroll-btn"
+                            data-course="Digital Marketing Basics">
+                        Enroll Now
+                    </button>
+                </div>
+            </article>
+
+            <!-- Java Course -->
+            <article class="course-card" data-category="Programming">
+                <div class="thumbnail">
+                    <img src="https://placehold.co/600x350/374151/ffffff?text=Java+Programming"
+                         alt="Java programming course">
+                    <span class="duration">4h 15m</span>
+                </div>
+
+                <div class="course-content">
+                    <h3>Java Programming</h3>
+                    <p class="instructor">👩‍🏫 Neha Iyer</p>
+                    <p class="rating">⭐ 4.8 / 5</p>
+                    <p class="description">
+                        Learn Java syntax, object-oriented programming, and coding.
+                    </p>
+
+                    <div class="objectives">
+                        <h4>Learning Objectives</h4>
+                        <ul>
+                            <li>Understand Java fundamentals.</li>
+                            <li>Learn classes and objects.</li>
+                            <li>Build simple Java programs.</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>Course Progress</span>
+                        <strong>30%</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:30%"></div>
+                    </div>
+
+                    <button class="btn enroll-btn"
+                            data-course="Java Programming">
+                        Enroll Now
+                    </button>
+                </div>
+            </article>
+
+        </div>
+
+        <p id="emptyMessage" style="display:none; margin-top:20px;">
+            No courses found. Try another category or search term.
+        </p>
+    </section>
+
+    <!-- Instructor Profiles -->
+    <section id="instructors" style="margin-top:50px;">
+        <h2 class="section-title">Meet Our Instructors</h2>
+
+        <div class="instructor-grid">
+            <div class="instructor-card">
+                <div class="avatar">👨‍🏫</div>
+                <h3>Rahul Sharma</h3>
+                <p>Python Programming</p>
+                <p>⭐ 4.8 Rating</p>
+            </div>
+
+            <div class="instructor-card">
+                <div class="avatar">👩‍🏫</div>
+                <h3>Priya Nair</h3>
+                <p>Web Development</p>
+                <p>⭐ 4.7 Rating</p>
+            </div>
+
+            <div class="instructor-card">
+                <div class="avatar">👨‍💻</div>
+                <h3>Amit Verma</h3>
+                <p>Data Science</p>
+                <p>⭐ 4.9 Rating</p>
+            </div>
+
+            <div class="instructor-card">
+                <div class="avatar">👩‍🎨</div>
+                <h3>Sneha Reddy</h3>
+                <p>UI/UX Design</p>
+                <p>⭐ 4.6 Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" style="margin-top:50px;">
+        <h2 class="section-title">About EduLearn</h2>
+        <p>
+            EduLearn is an educational website designed to help students
+            develop programming, web development, design, and digital
+            marketing skills through structured online courses.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <h3>🎓 EduLearn</h3>
+    <p>Learn Today • Build Tomorrow</p>
+    <p>© 2026 EduLearn | E-Learning Website Project</p>
+</footer>
+
+<script>
+// Category filtering
+const categoryButtons = document.querySelectorAll(".category");
+const courseCards = document.querySelectorAll(".course-card");
+const searchInput = document.getElementById("search");
+const emptyMessage = document.getElementById("emptyMessage");
+
+let selectedCategory = "All";
+
+function filterCourses() {
+    const searchText = searchInput.value.toLowerCase();
+    let visibleCount = 0;
+
+    courseCards.forEach(card => {
+        const category = card.dataset.category;
+        const text = card.textContent.toLowerCase();
+
+        const categoryMatches =
+            selectedCategory === "All" || category === selectedCategory;
+
+        const searchMatches = text.includes(searchText);
+
+        if (categoryMatches && searchMatches) {
+            card.style.display = "";
+            visibleCount++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    emptyMessage.style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        categoryButtons.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        button.classList.add("active");
+        selectedCategory = button.dataset.category;
+        filterCourses();
+    });
+});
+
+searchInput.addEventListener("input", filterCourses);
+
+// Enrollment button interaction
+document.querySelectorAll(".enroll-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        const courseName = button.dataset.course;
+
+        if (button.textContent === "Enrolled ✓") {
+            alert("You are already enrolled in " + courseName + ".");
+            return;
+        }
+
+        if (confirm("Enroll in " + courseName + "?")) {
+            button.textContent = "Enrolled ✓";
+            button.style.background = "#12a878";
+
+            alert("Successfully enrolled in " + courseName + "!");
+        }
+    });
+});
+</script>
+
